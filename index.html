@@ -302,7 +302,11 @@
                     <blockquote class="italic text-gray-400 mb-4 mt-6">
                         "I've been to many restaurants, but being served by Chef Si CHANGED my life, His so friendly, attentive, and knowledgeable about the menu."
                     </blockquote>
-                    <p class="font-semibold text-right text-amber-400">- Ocatvia</p>
+                    <p class="font-semibold text-right text-amber-400">- Octavia D.</p>
+                    <blockquote class="italic text-gray-400 mb-4 mt-6">
+                        "Chef Si makes every dish with passion, and never backs down his plating is always topnotch."
+                    </blockquote>
+                    <p class="font-semibold text-right text-amber-400">- Kgotso</p>
                     <blockquote class="italic text-gray-400 mb-4 mt-6">
                         "The chef's table experience was amazing! Watching the culinary magic happen right before our eyes was thrilling. Chef Si and his team serving us with love."
                     </blockquote>
@@ -457,41 +461,39 @@
                 let chatHistory = [];
                 chatHistory.push({ role: "user", parts: [{ text: prompt }] });
                 const payload = { contents: chatHistory };
-                const apiKey = ""; // Canvas will automatically provide the API key
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                // IMPORTANT: Replace "YOUR_GEMINI_API_KEY" with your actual Google Gemini API key.
+                // For a production environment, consider routing API calls through a secure backend to protect your key.
+                const apiKey = "YOUR_GEMINI_API_KEY"; // Placeholder for API Key
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
 
                 const response = await fetch(apiUrl, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
                     body: JSON.stringify(payload)
                 });
 
-                const result = await response.json();
-                
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const text = result.candidates[0].content.parts[0].text;
-                    conceptText.innerHTML = text.replace(/\n/g, '<br>');
-                    conceptOutput.classList.remove('hidden');
-                    submitConceptBtn.classList.remove('hidden');
-                    contactEventSummary.value = `Event Concept Details:\n${prompt}\n\nGenerated Concept:\n${text}`;
-                } else {
-                    errorMessage.classList.remove('hidden');
-                    console.error('Unexpected API response structure:', result);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
+
+                const data = await response.json();
+                const generatedConcept = data.candidates[0]?.content?.parts[0]?.text || "No concept generated.";
+
+                conceptText.textContent = generatedConcept;
+                contactEventSummary.value = generatedConcept; // Populate contact form with generated concept
+                conceptOutput.classList.remove('hidden');
+                submitConceptBtn.classList.remove('hidden');
+
             } catch (error) {
+                console.error('Error generating concept:', error);
                 errorMessage.classList.remove('hidden');
-                console.error('Error fetching AI concept:', error);
+                conceptText.textContent = ""; // Clear any previous text
+                submitConceptBtn.classList.add('hidden');
             } finally {
                 loadingSpinner.classList.add('hidden');
             }
-        });
-
-        // Scroll to contact form and pre-fill details
-        document.getElementById('submit-concept-btn').addEventListener('click', (e) => {
-            e.preventDefault();
-            document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
         });
     </script>
 </body>

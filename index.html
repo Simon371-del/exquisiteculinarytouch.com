@@ -51,13 +51,283 @@
             box-shadow: 0 0 0 2px #DAA520; /* Gold ring on focus */
             border-color: #DAA520;
         }
+
+        /* WhatsApp Button */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #25D366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+        .whatsapp-button img {
+            width: 32px;
+            height: 32px;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top-button {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            z-index: 100;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #DAA520;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            cursor: pointer;
+        }
+        .scroll-top-button.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .scroll-top-button:hover {
+            background-color: #FBBF24;
+            transform: translateY(-2px);
+        }
+        .scroll-top-button svg {
+            width: 24px;
+            height: 24px;
+            color: #111827;
+        }
+
+        /* Testimonials Slider */
+        .testimonials-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            gap: 20px;
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
+        .testimonials-slider::-webkit-scrollbar {
+            height: 6px;
+        }
+        .testimonials-slider::-webkit-scrollbar-track {
+            background: #374151;
+            border-radius: 10px;
+        }
+        .testimonials-slider::-webkit-scrollbar-thumb {
+            background: #DAA520;
+            border-radius: 10px;
+        }
+        .testimonial-card {
+            scroll-snap-align: start;
+            flex: 0 0 auto;
+            width: 85%;
+            max-width: 400px;
+            background: #1f2937;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .testimonial-card blockquote {
+            font-style: italic;
+            margin-bottom: 15px;
+            color: #e5e7eb;
+        }
+        .testimonial-card p {
+            text-align: right;
+            color: #DAA520;
+            font-weight: 600;
+        }
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .slider-btn {
+            background: #374151;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .slider-btn:hover {
+            background: #4b5563;
+        }
+        .slider-btn svg {
+            width: 24px;
+            height: 24px;
+            color: #DAA520;
+        }
+
+        /* Mobile Navigation */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+        .mobile-menu-btn svg {
+            width: 28px;
+            height: 28px;
+            color: #e5e7eb;
+        }
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #111827;
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .mobile-nav.active {
+            transform: translateX(0);
+        }
+        .mobile-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        .mobile-nav ul li {
+            margin: 20px 0;
+        }
+        .mobile-nav ul li a {
+            color: #e5e7eb;
+            font-size: 1.5rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .mobile-nav ul li a:hover {
+            color: #FBBF24;
+        }
+        .close-menu-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .close-menu-btn svg {
+            width: 28px;
+            height: 28px;
+            color: #e5e7eb;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1023px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 767px) {
+            .desktop-nav {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+                order: -1; /* Move to the left of the title */
+                margin-right: 10px;
+            }
+            header {
+                flex-direction: row;
+                justify-content: flex-start; /* Align items to the left */
+            }
+            .hero-background > div {
+                padding: 20px;
+            }
+            .hero-background h1 {
+                font-size: 2rem;
+            }
+            .hero-background p {
+                font-size: 1rem;
+            }
+            section {
+                padding: 40px 20px;
+            }
+            .testimonials-slider {
+                padding: 15px 0;
+            }
+            .testimonial-card {
+                width: 80%;
+            }
+            .whatsapp-button {
+                width: 55px;
+                height: 55px;
+                bottom: 15px;
+                right: 15px;
+            }
+            .whatsapp-button img {
+                width: 28px;
+                height: 28px;
+            }
+            .scroll-top-button {
+                width: 45px;
+                height: 45px;
+                bottom: 80px;
+                right: 15px;
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <header class="bg-gray-900 shadow-lg py-4 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center fixed w-full z-50">
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/27623577426?text=Hi%20Chef%20Si!%20I%20visited%20your%20website%20and%20would%20like%20to%20inquire%20about%20your%20services." 
+       target="_blank" 
+       class="whatsapp-button">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCI+PHBhdGggZD0iTTE3LjQ3MiwxNC4xMDVjLTAuMjc1LTAuMTQyLTEuNjM0LTAuODA2LTEuODg4LTAuODk3Yy0wLjI1OS0wLjA5NC0wLjQ0Ny0wLjE0Mi0wLjY0MywwLjE0MmMtMC4xOTcsMC4yODUtMC43NjIsMC44OTctMC45MzQsMS4wOTFjLTAuMTY4LDAuMTkzLTAuMzM2LDAuMjE0LTAuNjIxLDAuMDc0Yy0wLjI4OS0wLjE0NS0xLjIyMi0wLjQzLTIuMzI3LTEuMzcyYy0wLjg2Mi0wLjc2OS0xLjQ0Mi0xLjcyLTEuNjEtMi4wMTFjLTAuMTY4LTAuMjg5LTAuMDE4LTAuNDQ2LDAuMTI5LTAuNTkxYzAuMTE4LTAuMTE0LDAuMjYzLTAuMjg1LDAuMzk0LTAuNDI5YzAuMTMyLTAuMTQxLDAuMTc2LTAuMjM3LDAuMjYzLTAuMzk1YzAuMDg3LTAuMTU3LDAuMDQzLTAuMjg2LTAuMDIxLTAuNGMtMC4wNjQtMC4xMTQtMC41NzYtMS4zOTEtMC43ODgtMS45MDFjLTAuMjA5LTAuNTA0LTAuNDIxLTAuNDM0LTAuNTc2LTAuNDM0Yy0wLjE0OSwwLTAuMzE4LTAuMDA4LTAuNDg3LTAuMDA4Yy0wLjE2OSwwLTAuNDQ0LDAuMDYyLTAuNjc3LDAuMzA3Yy0wLjIzMywwLjI0Ni0wLjg5LDAuODctMC44OSwyLjEzYzAsMS4yNjIsMC45MTksMi40NzMsMS4wNDEsMi42NDVjMC4xMjIsMC4xNzMsMS43MiwyLjY5Niw0LjE2OCwzLjY0NmMwLjYwOSwwLjIzOCwxLjA4NSwwLjM4LDEuNDU1LDAuNDg3YzAuNjA0LDAuMTc1LDEuMTU1LDAuMTUsMS41OTEtMC4wOTFjMC40MzYtMC4yNDEsMC43NjktMC41NzIsMS4wNjEtMC45ODVjMC4yMjEtMC4zMDIsMC4xOTktMC41NTksMC4xNDgtMC43MjFjLTAuMDUyLTAuMTY1LTAuMjMzLTAuMjg1LTAuNTA3LTAuNDI2eiBNMTIuMDAyLDAuNTk5Yy02LjIxNiwwLTExLjI1LDUuMDM0LTExLjI1LDExLjI1YzAsMi4wMDcsMC41MjMsMy44ODgsMS40MTYsNS41MzdsLTEuNDk2LDQuNDQ2bDQuNTk1LTEuNDg3YzEuNDY0LDAuODQ3LDMuMTUyLDEuMzIzLDQuOTQ1LDEuMzIzYzYuMjE2LDAsMTEuMjUtNS4wMzQsMTEuMjUtMTEuMjVDMjMuMjUyLDUuNjMzLDE4LjIxOCwwLjU5OSwxMi4wMDIsMC41OTl6IE0xMi4wMDIsMjAuODQ2Yy0xLjcyMiwwLTMuNDA0LTAuNDYzLTQuODA5LTEuMzM1bC0wLjM0NC0wLjIwNGwtMy41MDQsMS4xNDRsMC45NDEtMy40OTFsLTAuMjItMC4zNDZjLTAuOTYtMS40ODktMS40OTItMy4yMDctMS40OTItNS4wODljMC00LjkxMiwzLjk5OS04LjkxMiw4LjkxMi04LjkxMmM0LjkyLDAsOC45MTIsMy45OTksOC45MTIsOC45MTJDMjAuOTE0LDE2Ljg0OCwxNi45MjIsMjAuODQ2LDEyLjAwMiwyMC44NDZ6Ii8+PC9zdmc+" alt="WhatsApp">
+    </a>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top-button">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </div>
+
+    <header class="bg-gray-900 shadow-lg py-4 px-6 md:px-12 flex justify-between items-center fixed w-full z-50">
+        <!-- Mobile Menu Button - Moved to left of title -->
+        <button class="mobile-menu-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+        
         <div class="text-2xl font-bold text-white">Exquisite <span class="text-amber-400">Culinary Touch</span></div>
-        <nav class="mt-4 md:mt-0">
+        
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
             <ul class="flex space-x-6 md:space-x-8">
                 <li><a href="#home" class="text-gray-300 hover:text-amber-400 transition duration-300 font-medium">Home</a></li>
                 <li><a href="#about" class="text-gray-300 hover:text-amber-400 transition duration-300 font-medium">About Chef Si</a></li>
@@ -68,6 +338,23 @@
             </ul>
         </nav>
     </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <button class="close-menu-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Chef Si</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#bar-services">Bar Services</a></li>
+            <li><a href="#create-your-event">Create Your Event</a></li>
+            <li><a href="#contact">Book Now</a></li>
+        </ul>
+    </div>
 
     <section id="home" class="hero-background min-h-screen flex items-center justify-center text-center text-white p-6 pt-24 md:pt-32">
         <div class="bg-black bg-opacity-60 p-8 md:p-12 rounded-lg max-w-4xl card-shadow">
@@ -280,40 +567,74 @@
             <h2 class="text-4xl font-bold mb-12 border-b-4 border-amber-500 pb-2 inline-block">Why Choose Chef Si?</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                <div class="bg-gray-800 text-gray-200 p-8 rounded-lg card-shadow transform hover:scale-105 transition duration-300">
+                <div class="bg-gray-800 text-gray-200 p-8 rounded-lg card-shadow">
                     <h3 class="text-2xl font-semibold text-amber-400 mb-4">What Clients Say</h3>
-                    <blockquote class="italic text-gray-400 mb-4">
-                        "ETC created the most memorable day of my life with the flavors they were so incredible! The service was top-notch, and the atmosphere was perfect for a special occasion. My dinner was a success!"
-                    </blockquote>
-                    <p class="font-semibold text-right text-amber-400">- Lihle M.</p>
-                    <blockquote class="italic text-gray-400 mb-4 mt-6">
-                        "I've never tasted anything like it! The chef's creativity and attention to detail truly AMAZED me through every dish."
-                    </blockquote>
-                    <p class="font-semibold text-right text-amber-400">- Tj Clouds.</p>
-                    <blockquote class="italic text-gray-400 mb-4 mt-6">
-                        "My Graduation was a success! The food, topnotch drinks, and service all exceeded our expectations. I Highly recommend a private booking!"
-                    </blockquote>
-                    <p class="font-semibold text-right text-amber-400">- Lethabo M.</p>
-                    <blockquote class="italic text-gray-400 mb-4 mt-6">
-                        "The presentation was stunning, and the flavors were even more impressive. A truly exceptional dining experience."
-                    </blockquote>
-                    <p class="font-semibold text-right text-amber-400">- Mfundo D.</p>
-                    <blockquote class="italic text-gray-400 mb-4 mt-6">
-                        "I've been to many restaurants, but being served by Chef Si CHANGED my life, His so friendly, attentive, and knowledgeable about the menu."
-                    </blockquote>
-                    <p class="font-semibold text-right text-amber-400">- Octavia D.</p>
-                    <blockquote class="italic text-gray-400 mb-4 mt-6">
-                        "Chef Si makes every dish with passion, and never backs down his plating is always topnotch."
-                    </blockquote>
-                    <p class="font-semibold text-right text-amber-400">- Kgotso M.</p>
-                    <blockquote class="italic text-gray-400 mb-4 mt-6">
-                        "The chef's table experience was amazing! Watching the culinary magic happen right before our eyes was thrilling. Chef Si and his team serving us with love."
-                    </blockquote>
-                    <p class="font-semibold text-right text-amber-400">- Clerance M.</p>
-                    <blockquote class="italic text-gray-400 mb-4 mt-6">
-                        "The attention to detail and personalized service made our anniversary dinner truly special. Thank you for making us feel like royalty! The menu was innovative and expertly crafted. Each dish was a delight for the senses. Can't wait to book again next year!"
-                    </blockquote>
-                    <p class="font-semibold text-right text-amber-400">- Mr and Mrs Tladi</p>
+                    
+                    <!-- Testimonials Slider -->
+                    <div class="testimonials-slider" id="testimonials-slider">
+                        <div class="testimonial-card">
+                            <blockquote>
+                                "ETC created the most memorable day of my life with the flavors they were so incredible! The service was top-notch, and the atmosphere was perfect for a special occasion. My dinner was a success!"
+                            </blockquote>
+                            <p>- Lihle M.</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <blockquote>
+                                "I've never tasted anything like it! The chef's creativity and attention to detail truly AMAZED me through every dish."
+                            </blockquote>
+                            <p>- Tj Clouds.</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <blockquote>
+                                "My Graduation was a success! The food, topnotch drinks, and service all exceeded our expectations. I Highly recommend a private booking!"
+                            </blockquote>
+                            <p>- Lethabo M.</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <blockquote>
+                                "The presentation was stunning, and the flavors were even more impressive. A truly exceptional dining experience."
+                            </blockquote>
+                            <p>- Mfundo D.</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <blockquote>
+                                "I've been to many restaurants, but being served by Chef Si CHANGED my life, His so friendly, attentive, and knowledgeable about the menu."
+                            </blockquote>
+                            <p>- Octavia D.</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <blockquote>
+                                "Chef Si makes every dish with passion, and never backs down his plating is always topnotch."
+                            </blockquote>
+                            <p>- Kgotso M.</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <blockquote>
+                                "The chef's table experience was amazing! Watching the culinary magic happen right before our eyes was thrilling. Chef Si and his team serving us with love."
+                            </blockquote>
+                            <p>- Clerance M.</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <blockquote>
+                                "The attention to detail and personalized service made our anniversary dinner truly special. Thank you for making us feel like royalty! The menu was innovative and expertly crafted. Each dish was a delight for the senses. Can't wait to book again next year!"
+                            </blockquote>
+                            <p>- Mr and Mrs Tladi</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Slider Controls -->
+                    <div class="slider-controls">
+                        <button class="slider-btn prev-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <button class="slider-btn next-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="bg-gray-800 text-gray-200 p-8 rounded-lg card-shadow transform hover:scale-105 transition duration-300">
@@ -399,7 +720,8 @@
                 <a href="#" class="text-gray-400 hover:text-amber-400 transition duration-300">Instagram</a>
                 <a href="#" class="text-gray-400 hover:text-amber-400 transition duration-300">LinkedIn</a>
             </div>
-            <p class="text-sm text-gray-500 mt-4">A venture by Chef Si (Simon Sithole).</p>
+            <!-- Changed footer text here -->
+            <p class="text-sm text-gray-500 mt-4">With ❤️ by M. Damara</p>
         </div>
     </footer>
 
@@ -493,6 +815,80 @@
             } finally {
                 loadingSpinner.classList.add('hidden');
             }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const closeMenuBtn = document.querySelector('.close-menu-btn');
+        const mobileNav = document.querySelector('.mobile-nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Scroll to Top Button
+        const scrollToTopBtn = document.querySelector('.scroll-top-button');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Testimonials Slider
+        const slider = document.getElementById('testimonials-slider');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        const cardWidth = document.querySelector('.testimonial-card').offsetWidth;
+        const gap = 20;
+        let scrollPosition = 0;
+        const maxScroll = slider.scrollWidth - slider.clientWidth;
+        
+        // Initialize slider position
+        slider.scrollLeft = 0;
+        
+        prevBtn.addEventListener('click', () => {
+            scrollPosition = Math.max(scrollPosition - (cardWidth + gap), 0);
+            slider.scrollTo({
+                left: scrollPosition,
+                behavior: 'smooth'
+            });
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            scrollPosition = Math.min(scrollPosition + (cardWidth + gap), maxScroll);
+            slider.scrollTo({
+                left: scrollPosition,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Update scroll position on manual scroll
+        slider.addEventListener('scroll', () => {
+            scrollPosition = slider.scrollLeft;
         });
     </script>
 </body>
